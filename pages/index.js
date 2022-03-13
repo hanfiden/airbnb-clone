@@ -13,7 +13,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Airbnb</h1>
       <Header/>
     </div>
   )
