@@ -4,8 +4,9 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import Banner from '../components/Banner'
 import SmallCard from '../components/SmallCard'
+import MediumCard from '../components/MediumCard'
 
-export default function Home({ exploreData }) {
+export default function Home({ exploreData, liveData }) {
   return (
     <div className="">
       <Head>
@@ -29,7 +30,21 @@ export default function Home({ exploreData }) {
               distance={item.distance}
               location={item.location}
               />
-              )) }
+            )) }
+          </div>
+        </section>
+
+        <section className='pt-6'>
+          <h2 className='text-4xl font-semibold py-8'>Live anywhere</h2>
+
+          <div className='flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3'>
+            {liveData?.map(item => (
+              <MediumCard
+                key={item.img}
+                img={item.img}
+                title={item.title}
+              />
+            ))}
           </div>
         </section>
       </main>
@@ -39,13 +54,15 @@ export default function Home({ exploreData }) {
 
 export async function getStaticProps(){
   const exploreData = await fetch('https://links.papareact.com/pyp')
-  .then(
-    (res) => res.json()
-  );
+  .then((res) => res.json());
+
+  const liveData = await fetch('https://links.papareact.com/zp1')
+  .then((res) => res.json());
 
   return {
     props: {
-      exploreData
+      exploreData,
+      liveData
     }
   }
 }
