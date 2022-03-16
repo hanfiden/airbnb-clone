@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Banner from '../components/Banner'
 import SmallCard from '../components/SmallCard'
 import MediumCard from '../components/MediumCard'
+import LargeCard from '../components/LargeCard'
 
 export default function Home({ exploreData, liveData }) {
   return (
@@ -46,6 +47,15 @@ export default function Home({ exploreData, liveData }) {
               />
             ))}
           </div>
+        </section>
+
+        <section>
+          <LargeCard
+            img="https://links.papareact.com/4cj"
+            title="The Greatest Outdoors"
+            description="Wishlists curated by Airbnb."
+            buttonText="Get Inspired"
+          />
         </section>
       </main>
     </div>
