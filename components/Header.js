@@ -6,17 +6,17 @@ import { SearchIcon,
          UserIcon
 } from '@heroicons/react/solid';
 import { useState } from "react";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 
-function Header() {
+function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [numberOfGuest, setNumberOfGuest] = useState(1);
-  const router = useRouter()
+  const router = useRouter();
 
   const selectionRange = {
     startDate: startDate,
@@ -63,7 +63,7 @@ function Header() {
           onChange={(event) => setSearchInput(event.target.value)}
           className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600"
           type="text"
-          placeholder="Start your search" />
+          placeholder={placeholder || "Start your search"} />
         <SearchIcon
           className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2"/>
       </div>
