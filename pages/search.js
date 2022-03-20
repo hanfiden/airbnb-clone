@@ -3,10 +3,10 @@ import Header from "../components/Header"
 import { parseISO } from 'date-fns';
 import { useRouter } from "next/router";
 
-function search() {
+function Search({ searchResult }) {
   const router = useRouter();
+
   const { location, startDate, endDate, numberOfGuest } = router.query;
-  console.log(router.query);
   const formattedStartDate = parseISO(startDate).toDateString();
   const formattedEndDate = parseISO(endDate).toDateString();
 
@@ -29,9 +29,11 @@ function search() {
             <p className="button">Rooms and Beds</p>
             <p className="button">More filters</p>
           </div>
-        </section>
 
-        <section className="h-[450px]"></section>
+          {/* {searchResult.map(item => (
+
+          ))} */}
+        </section>
       </main>
 
       <Footer />
@@ -39,4 +41,14 @@ function search() {
   )
 }
 
-export default search
+export default Search
+
+export async function getServerSideProps(){
+  const searchResult = await fetch("https://links.papareact.com/isz")
+                            .then(respond => respond.json());
+  return {
+    props: {
+      searchResult,
+    }
+  }
+}
